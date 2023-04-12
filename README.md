@@ -1,17 +1,3 @@
-├── CONTRIBUTING.md
-├── LICENSE.md
-├── Pipfile
-├── Pipfile.lock
-├── client
-│   ├── README.md
-│   ├── node_modules
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public
-│   └── src
-└── server
-    ├── app.py
-    ├── config.py
-    ├── migrations
-    ├── models.py
-    └── seed.py
+Wikipedia Style Website for Parents that actually CARE about their child and want to have access to the best information!
+KrunchyMa Pedia
+KrunchyMa Pedia. Alex Guest
