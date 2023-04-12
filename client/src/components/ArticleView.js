@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { fetchArticles } from './api';
 
-function ArticleView() {
-  const { id } = useParams();
-  const [article, setArticle] = useState(null);
+function ArticleList({ apiKey }) {
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    // Fetch the article with the specified ID from the API and update the state
-  }, [id]);
+    const fetchArticlesFromApi = async () => {
+      try {
+        const data = await fetchArticles(apiKey);
+        setArticles(data);
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+      }
+    };
+
+    fetchArticlesFromApi();
+  }, [apiKey]);
 
   return (
     <div>
-      {article ? (
-        <div>
-          <h2>{article.title}</h2>
-          <p>{article.content}</p>
-          {/* Add edit and delete buttons */}
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <h2>Articles</h2>
+      <ul>
+        {articles.map((article) => (
+          <li key={article.url}>
+            <Link to={`/articles/${encodeURIComponent(article.url)}`}>{article.title}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default ArticleView;
+export default ArticleList;

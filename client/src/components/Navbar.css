@@ -1,6 +1,6 @@
 /* Navbar.css */
 .navbar {
-    background-color: #222;
+    background-color: #d1c8c8;
     padding: 20px;
   }
   
@@ -16,6 +16,6 @@
   
   /* Navbar.css */
 .navbar-text-color {
-    color: white;
+    color: rgb(0, 0, 0);
   }
   

@@ -4,7 +4,10 @@ function CategoryList() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    // Fetch categories from the API and update the state
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(data => setCategories(data))
+      .catch(error => console.error(error));
   }, []);
 
   return (

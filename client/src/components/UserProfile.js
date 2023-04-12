@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-// Import your authentication context here
+import AppContext from '../context/AppContext';
+
 
 function UserProfile() {
-  const authContext = useContext(/* Your authentication context */);
+  const authContext = useContext(AppContext);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ function UserProfile() {
           <p>Email: {user.email}</p>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p>This is where you can access you Profile and see your blogs, please sign up using the Register Link at Top!</p>
       )}
     </div>
   );

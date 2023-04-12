@@ -13,14 +13,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
-
 class User(db.Model):
     id = Column(Integer, primary_key=True)
     username = Column(String(80), unique=True, nullable=False)
     email = Column(String(120), unique=True, nullable=False)
     _password = Column("password", String(255), nullable=False)
-    articles = relationship("Article", secondary="user_article", back_populates="users")
+    articles = relationship("UserArticle", back_populates="user")
 
     def __init__(self, username, email, password):
         self.username = username
@@ -38,7 +36,9 @@ class User(db.Model):
     def check_password(self, plaintext):
         return check_password_hash(self._password, plaintext)
 
+
 class UserArticle(db.Model):
+    __tablename__ = 'user_article'
     user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
     article_id = Column(Integer, ForeignKey('article.id'), primary_key=True)
     relationship_type = Column(String(50), nullable=False)
@@ -55,12 +55,10 @@ class Article(db.Model):
     category_id = Column(Integer, ForeignKey('category.id'))
     
     category = relationship("Category", back_populates="articles")
-    users = relationship("User", secondary="user_article", back_populates="articles")
+    users = relationship("UserArticle", back_populates="article")
 
 class Category(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String(255), nullable=False, unique=True)
     
     articles = relationship("Article", back_populates="category")
-
-# Create tables
