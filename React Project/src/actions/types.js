@@ -1,0 +1,13 @@
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
+
+export const SET_MESSAGE = "SET_MESSAGE";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+
+export const CREATE_TIPS = "CREATE_TUTORIAL";
+export const RETRIEVE_TIPS= "RETRIEVE_TUTORIALS";
+export const UPDATE_TIPS = "UPDATE_TUTORIAL";
+export const MY_TIPS = "MY_TIPS";
