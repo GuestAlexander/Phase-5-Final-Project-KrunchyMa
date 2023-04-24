@@ -56,3 +56,23 @@ def update_tip(tip_id):
         return jsonify({'message': 'Tip updated successfully'}), 201
     except Exception as e:
         return jsonify({'message': str(e)}), 500
+    
+    
+    
+@tips_.route('/delete/<int:tip_id>', methods=["DELETE"])
+@jwt_required()
+def delete_tip(tip_id):
+    try:
+        current_user = get_jwt_identity()
+        user_obj = User.query.filter_by(username=current_user).first()
+        tip_obj = Tips.query.filter_by(id=tip_id, user_id=user_obj.id).first()
+        
+        if not tip_obj:
+            return jsonify({'message': 'You are not authorized to delete any tips except your own ones'}), 401
+
+        db.session.delete(tip_obj)
+        db.session.commit()
+
+        return jsonify({'message': 'Tip deleted successfully'}), 200
+    except Exception as e:
+        return jsonify({'message': str(e)}), 500
